@@ -3,6 +3,12 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all
+    @modify = false
+  end
+
+  def rw
+    @books = Book.all
+    @modify = true
   end
 
   def show

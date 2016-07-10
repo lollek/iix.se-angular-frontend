@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'books/rw' => 'books#rw'
   resources :books
 
   root 'application#angular'

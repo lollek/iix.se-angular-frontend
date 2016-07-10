@@ -26,6 +26,7 @@
                 // Lists
                 .when('/beer', {templateUrl: '/html/beer.html'})
                 .when('/wishlist', {templateUrl: '/html/wishlist.html'})
+                .when('/booklist', {templateUrl: '/books'})
 
                 // Moria
                 .when('/moria', { templateUrl: '/html/moria.html' })

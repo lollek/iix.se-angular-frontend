@@ -1,107 +1,18 @@
-<h1 id="bocker">Böcker</h1>
+<h1>Books</h1>
 <table class="table table-hover">
-<thead>
-<tr class="header">
-<th>Namn</th>
-<th>Författare</th>
-<th>Övrigt</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>American Gods</td>
-<td>Neil Gaiman</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>Brave New World</td>
-<td>Aldous Huxley</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td>Cat's Cradle</td>
-<td>Kurt Vonnegut</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>Catch 22</td>
-<td>Joseph Heller</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td>Comentarii de Bello Gallico</td>
-<td>Caesar</td>
-<td>Parallell Svenska/Latin</td>
-</tr>
-<tr class="even">
-<td>Darkness at Noon</td>
-<td>Arthur Koestler</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td>Diatribai</td>
-<td>Epictetus</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>Don Quixote</td>
-<td>Miguel de Cervantes</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td>Epic of Gilgamesh</td>
-<td>?</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>Fahrenheit 451</td>
-<td>Ray Bradbury</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td>Im Westen nichts Neues</td>
-<td>Erich Maria Remarque</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>La Divina Commedia</td>
-<td>Dante Alighieri</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td>My Name is Red</td>
-<td>Orham Pamuk</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>Njáls saga</td>
-<td>?</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td><a href="https://en.wikipedia.org/wiki/Rogues_(anthology)">Rogues</a></td>
-<td>Olika</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>Ta eis heauton</td>
-<td>Marcus Aurelius</td>
-<td>Engelska, översatt av Gregory Hayes</td>
-</tr>
-<tr class="odd">
-<td>The Grapes of Wrath</td>
-<td>John Steinbeck</td>
-<td>Engelska</td>
-</tr>
-<tr class="even">
-<td>The Magic Mountain</td>
-<td>Thomas Mann</td>
-<td>Engelska</td>
-</tr>
-<tr class="odd">
-<td>The Old Man and the Sea</td>
-<td>Ernest Hemingway</td>
-<td>Engelska</td>
-</tr>
-</tbody>
+  <thead>
+    <tr class="header">
+      <th>Title</th>
+      <th>Author</th>
+      <th>Other</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="book in books">
+      <td>{{book.title}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.other}}</td>
+    </tr>
+  </tbody>
 </table>

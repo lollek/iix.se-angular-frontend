@@ -2,7 +2,8 @@
     'use strict';
 
     var app = angular.module('mainApp', [
-        'ngRoute'
+        'ngRoute',
+        'ngResource'
     ]);
 
     app.config(['$routeProvider', '$locationProvider',
@@ -25,9 +26,11 @@
 
                 // Lists
                 .when('/beer', {templateUrl: '/html/beer.html'})
-                .when('/wishlist', {templateUrl: '/html/wishlist.html'})
+                .when('/wishlist', {
+                  controller: 'BooksController',
+                  templateUrl: '/html/wishlist.html'
+                })
                 .when('/booklist', {templateUrl: '/books'})
-                .when('/booklist/rw', {templateUrl: '/books/rw'})
 
                 // Moria
                 .when('/moria', { templateUrl: '/html/moria.html' })

@@ -1,53 +1,42 @@
 class BooksController < ApplicationController
-  layout 'empty'
-
+  #TODO: render json returns too much data (like creation dates)
   def index
     @books = Book.all
-    @modify = false
-  end
-
-  def rw
-    @books = Book.all
-    @modify = true
+    render json: @books
   end
 
   def show
     @book = Book.find(params[:id])
+    render json: @book
   end
 
   def new
     @book = Book.new
+    render json: @book
   end
 
   def edit
     @book = Book.find(params[:id])
+    render json: @book
   end
 
   def create
+    #@book = Book.create(book_params)
     @book = Book.new(book_params)
-
-    if @book.save then
-      redirect_to @book
-    else
-      render 'new'
-    end
+    @book.save
+    render json: @book
   end
 
   def update
     @book = Book.find(params[:id])
-
-    if @book.update(book_params)
-      redirect_to @book
-    else
-      render 'edit'
-    end
+    @book.update(book_params)
+    render json: @book
   end
 
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-
-    redirect_to action: :index
+    render json: @book
   end
 
   private

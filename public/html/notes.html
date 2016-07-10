@@ -1,0 +1,10 @@
+<h1>Notes</h1>
+<div class="list-group">
+
+    <a class="list-group-item" ng-repeat="note in notes" href="{{'/notes/' + getRevIndex($index)}}">
+        <span class="badge">{{note.date}}</span>
+        &raquo;
+        {{note.title}}
+    </a>
+
+</div>

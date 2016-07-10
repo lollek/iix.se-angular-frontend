@@ -1,0 +1,12 @@
+<ol>
+<li>Download <a href="https://developer.android.com/sdk/installing/studio.html">android studio</a></li>
+<li>Untar it to /opt/android-studio</li>
+<li>Symlink /opt/android-studio/bin/studio.sh to /usr/local/bin/android-studio</li>
+<li>Download <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">oracle's java</a></li>
+<li>Untar it to /opt/oracle-java</li>
+<li>(Ubuntu) Symlink /opt/oracle-java to /usr/lib/jvm/default-java</li>
+<li>(Ubuntu) Symlink /opt/oracle-java/bin/java to /usr/bin/java</li>
+</ol>
+<p>If you have a 64-bit system, you'll need to install 32-bit libraries:</p>
+<pre><code># On ubuntu
+sudo apt-get install lib32z1 lib32ncurses5 lib32bz2-1.0 lib32stdc++6</code></pre>

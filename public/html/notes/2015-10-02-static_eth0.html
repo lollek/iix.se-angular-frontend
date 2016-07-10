@@ -1,0 +1,56 @@
+<h2 id="description">Description:</h2>
+<p>The first step is to establish basic network connectivity for your router/gateway.<br />
+This will allow you to connect to the installation server on the distribution network,<br />
+from which you can install the routing software needed in later steps.<br />
+Your router needs three network interfaces:</p>
+<ul>
+<li>the loopback interface (lo; which is used for network connections within the gateway)</li>
+<li>the interface connected to the distribution network (eth1)</li>
+<li>the interface connected to your network (eth0).</li>
+</ul>
+<p>Each interface needs an address, netmask and broadcast address.<br />
+It is important that you specify the correct netmask and broadcast address!</p>
+<p>D4-router.lab-2 expected configuration:</p>
+<pre><code>lo   - loopback
+
+eth0 - internal network
+  Network:    130.236.179.88/29
+  IP-Address: 130.236.179.89
+  Netmask:    255.255.255.248
+  Broadcast:  130.236.179.95
+
+eth1 - external network
+  Network:    130.236.178.0/26
+  IP-Address: 130.236.178.33
+  Netmask:    255.255.255.192
+  Broadcast:  130.236.178.63
+  Gateway:    130.236.178.1</code></pre>
+<h2 id="implementation">Implementation:</h2>
+<ul>
+<li>Login to D4-router.lab-2 as root</li>
+<li>Copy /etc/network/interfaces to /etc/network/interfaces.change.0002</li>
+<li>Open /etc/network/interfaces in vi and add the following contents:</li>
+</ul>
+<pre><code>auto lo eth0 eth1
+
+iface lo inet loopback
+
+iface eth0 inet static
+  address 130.236.179.89
+  netmask 255.255.255.248
+  broadcast 130.236.179.95
+
+iface eth1 inet static
+  address 130.236.178.33
+  netmask 255.255.255.192
+  broadcast 130.236.178.63
+  gateway 130.236.178.1</code></pre>
+<p>Save file and run <code>ifup lo eth0 eth1</code></p>
+<h2 id="verification">Verification:</h2>
+<ul>
+<li>Should be able to ping 130.236.178.1 from D4-router.lab-2</li>
+<li>Restart router</li>
+<li>Should be able to ping 130.236.178.1 from D4-router.lab-2</li>
+</ul>
+<h2 id="backout">Backout:</h2>
+<p>None needed</p>

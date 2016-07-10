@@ -1,0 +1,71 @@
+<h1 id="clean">Clean</h1>
+<pre><code>#! /usr/bin/env expect
+set host [lindex $argv 0];
+set user [lindex $argv 1];
+set passwd [lindex $argv 2];
+
+set timeout 5
+spawn ssh $user@$host
+
+expect {
+  &quot;yes/no&quot; {
+    send &quot;yes\r&quot;
+    exp_continue
+  }
+
+  &quot;password:&quot; {
+    send &quot;$passwd\r&quot;
+    exp_continue
+  }
+
+  &quot;$user@$host:~? &quot; {
+    exit 0
+  }
+
+  timeout {
+    exit 2
+  }
+}
+
+exit 1</code></pre>
+<h1 id="wrapped-inside-bash">Wrapped inside bash</h1>
+<pre><code>#! /usr/bin/env bash
+
+assert_ssh_login() {
+  local host=&quot;${1}&quot;
+  local user=&quot;${2}&quot;
+  local passwd=&quot;${3}&quot;
+
+  local details=&quot;$(echo -e &quot;\
+    set timeout 5              \n\
+    spawn ssh ${user}@${host}  \n\
+    expect {                   \n\
+      \&quot;yes/no\&quot; {             \n\
+        send \&quot;yes\r\&quot;         \n\
+        exp_continue           \n\
+      }                        \n\
+                              \n\
+      \&quot;password:\&quot; {          \n\
+        send \&quot;${passwd}\r\&quot;   \n\
+        exp_continue           \n\
+      }                        \n\
+                              \n\
+      \&quot;${user}@${host}:~? \&quot; {\n\
+        exit 0                 \n\
+      }                        \n\
+                              \n\
+      timeout {                \n\
+        exit 2                 \n\
+      }                        \n\
+    }                          \n\
+                              \n\
+    exit 1                     \n\
+    &quot; | expect)&quot;
+
+  case &quot;${?}&quot; in
+    &quot;0&quot;) echo &quot;Can login as ${user} on ${host}&quot; ;;
+    &quot;1&quot;) echo &quot;${user} can not login on ${host}. Details: ${details}&quot; ;;
+    &quot;2&quot;) echo &quot;${user} can not login on ${host} (Timeout). Details: ${details}&quot; ;;
+    * ) echo &quot;${user} can not login on ${host} (Error ${?}): Details: ${details}&quot; ;;
+  esac
+}</code></pre>

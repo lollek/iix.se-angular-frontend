@@ -1,0 +1,23 @@
+{
+  "name": "rails-iix.se",
+  "authors": [
+    "Olle Kvarnström <olle+railsiixse@iix.se>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "iix.se",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6",
+    "angular-route": "^1.5.7"
+  }
+}

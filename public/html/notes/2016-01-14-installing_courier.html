@@ -1,0 +1,24 @@
+<h2 id="description">Description:</h2>
+<p>Install courier on server</p>
+<h2 id="implementation">Implementation:</h2>
+<ul>
+<li>Login as root</li>
+<li>Install fam and courier-imap-ssl through aptitude
+<ul>
+<li>Create directories for web-based administration? <strong>No</strong></li>
+</ul></li>
+<li>In /etc/postfix/main.cf, add line:</li>
+</ul>
+<pre><code>home_mailbox = Maildir/</code></pre>
+<ul>
+<li>Restart service</li>
+</ul>
+<pre><code>service postfix restart</code></pre>
+<ul>
+<li>You may need to run <em>maildirmake Maildir</em> when in homedir?</li>
+</ul>
+<h2 id="verification">Verification:</h2>
+<ol>
+<li>Should be able to login as root on imap from outside of LAN</li>
+<li>Should be able to login as root on imap with STARTTLS from outside of LAN</li>
+</ol>

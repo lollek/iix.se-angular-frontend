@@ -1,0 +1,112 @@
+<h2 id="description">Description:</h2>
+<p>Need to install DNS on server with the following configuration:</p>
+<ol>
+<li>It must respond authoritatively to all non-recursive queries for names in the zones it is authoritative for.</li>
+<li>It must respond to all recursive queries from the hosts on its own network.</li>
+<li>It must not respond to any recursive queries from any outside host (i.e. host not on its own network).</li>
+<li>Apart from the queries in (1), it should not respond to any queries from any outside host.</li>
+<li>It must contain valid zone data for its zone(s).</li>
+<li>The cache parameters must be chosen sensibly</li>
+<li>It must not be susceptible to the standard cache poisoning attacks. See <a href="http://www.kb.cert.org/vuls/id/800113" class="uri">http://www.kb.cert.org/vuls/id/800113</a> for details. Test its DNS server using porttest.dns-oarc.net (see <a href="http://www.dns-oarc.net/oarc/services/porttest" class="uri">http://www.dns-oarc.net/oarc/services/porttest</a>).</li>
+</ol>
+<p>It should have the following normal zone:</p>
+<ul>
+<li>zone d4.systinst.ida.liu.se</li>
+<li>D4-router.lab-2 should have IP 130.236.179.89 and FQDN gw.d4.sysinst.ida.liu.se</li>
+<li>D4-server.lab-2 should have IP 130.236.179.90 and FQDN server.d4.sysinst.ida.liu.se</li>
+<li>D4-client-1.lab-2 should have IP 130.236.179.91 and FQDN client-1.d4.sysinst.ida.liu.se</li>
+<li>D4-client-2.lab-2 should have IP 130.236.179.92 and FQDN client-2.d4.sysinst.ida.liu.se</li>
+</ul>
+<h2 id="implementation">Implementation:</h2>
+<ul>
+<li>Login with the root account</li>
+<li>Run aptitude</li>
+<li>Update package list</li>
+<li><p>Locate and install bind9 and dnsutils</p></li>
+<li>Copy /etc/bind/named.conf.local to /etc/bind/named.conf.local.change.0009</li>
+<li><p>Add data to /etc/bind/named.conf.local:</p></li>
+</ul>
+<pre><code>zone &quot;d4.sysinst.ida.liu.se&quot; {
+  type master;
+  file &quot;/etc/bind/db.d4.sysinst.ida.liu.se&quot;;
+};
+
+zone &quot;88-29.179.236.130.in-addr.arpa&quot; {
+  type master;
+  file &quot;/etc/bind/db.88-29.179.236.130.in-addr.arpa&quot;;
+};</code></pre>
+<ul>
+<li>Create /etc/bind/db.d4.sysinst.ida.liu.se with the following data:</li>
+</ul>
+<pre><code>$TTL    1H
+@        IN      SOA     server.d4.sysinst.ida.liu.se.
+hostmaster.d4.sysinst.ida.liu.se. (
+                     2015092301
+                             1H
+                            10M
+                             1D
+                             1H )
+;
+@        IN      NS      server.d4.sysinst.ida.liu.se.
+
+gw       IN      A       130.236.179.89
+server   IN      A       130.236.179.90
+client-1 IN      A       130.236.179.91
+client-2 IN      A       130.236.179.92</code></pre>
+<ul>
+<li>Create /etc/bind/db.88-29.179.236.130.in-addr.arpa with the following data:</li>
+</ul>
+<pre><code>$TTL    1H
+@       IN      SOA     server.d4.sysinst.ida.liu.se.
+hostmaster.d4.sysinst.ida.liu.se. (
+                     2015092301
+                             1H
+                            10M
+                             1D
+                             1H)
+;
+@       IN      NS      server.d4.sysinst.ida.liu.se.
+89      IN      PTR     gw.d4.sysinst.ida.liu.se.
+90      IN      PTR     server.d4.sysinst.ida.liu.se.
+91      IN      PTR     client-1.d4.sysinst.ida.liu.se.
+92      IN      PTR     client-2.d4.sysinst.ida.liu.se.</code></pre>
+<ul>
+<li>Move /etc/bind/named.conf.options to /etc/bind/named.conf.options.change.0009</li>
+<li>Create /etc/bind/named.conf.options with following data:</li>
+</ul>
+<pre><code>acl lan { 127.0.0.1; 130.236.179.88/29; };
+
+options {
+  directory &quot;/var/cache/bind&quot;;
+  auth-nxdomain no;    # conform to RFC1035
+  forwarders { 130.236.178.1; };
+  allow-transfer { none; };
+  allow-query { any; };
+  allow-recursion { lan; };
+  dnssec-validation yes;
+};
+include &quot;/etc/bind/bind.keys&quot;;</code></pre>
+<ul>
+<li>Run <code>server bind reload</code></li>
+<li>Send an email to your provider and ask them to add the following to their DNS:</li>
+</ul>
+<pre><code>    d4.sysinst.ida.liu.se.            IN  NS      server.d4.sysinst.ida.liu.se.
+    server.d4.sysinst.ida.liu.se.     IN  A       130.236.179.90
+
+    88-29.179.236.130.in-addr.arpa.   IN  NS      server.d4.sysinst.ida.liu.se.
+    88.179.236.130.in-addr.arpa.      IN  CNAME   88.88-29.179.236.130.in-addr.arpa.
+    89.179.236.130.in-addr.arpa.      IN  CNAME   89.88-29.179.236.130.in-addr.arpa.
+    90.179.236.130.in-addr.arpa.      IN  CNAME   90.88-29.179.236.130.in-addr.arpa.
+    91.179.236.130.in-addr.arpa.      IN  CNAME   91.88-29.179.236.130.in-addr.arpa.
+    92.179.236.130.in-addr.arpa.      IN  CNAME   92.88-29.179.236.130.in-addr.arpa.
+    93.179.236.130.in-addr.arpa.      IN  CNAME   93.88-29.179.236.130.in-addr.arpa.
+    94.179.236.130.in-addr.arpa.      IN  CNAME   94.88-29.179.236.130.in-addr.arpa.
+    95.179.236.130.in-addr.arpa.      IN  CNAME   95.88-29.179.236.130.in-addr.arpa.</code></pre>
+<h2 id="verification">Verification:</h2>
+<ul>
+<li><p>Run <code>named-checkzone d4.sysinst.ida.liu.se /etc/bind/db.d4.sysinst.ida.liu.se</code> and verify there is an OK</p></li>
+<li>Run <code>dig org. SOA +dnssec @localhost.</code> It should resolve and have an 'ad' flag.</li>
+<li><p>Run <code>dig google.com @localhost.</code> It should resolve</p></li>
+</ul>
+<h2 id="backout">Backout:</h2>
+<p>Uninstall bind9 through aptitude</p>

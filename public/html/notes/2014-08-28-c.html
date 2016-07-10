@@ -1,0 +1,62 @@
+<h2 id="links">Links</h2>
+<p><a href="https://developer.apple.com/library/ios/documentation/Security/Conceptual/SecureCodingGuide/SecureCodingGuide.pdf">Apple Secure Coding</a><br />
+<a href="http://cdecl.org">C Gibberish (Decode C declarations)</a></p>
+<h2 id="cannot-find-stdio.h-or-other-headers">Cannot find stdio.h (or other headers)</h2>
+<p>Install libc6-dev</p>
+<h2 id="case-insensitive-strncpy">Case insensitive str(n)cpy</h2>
+<pre><code>#include &lt;strings.h&gt;
+int strcasecmp(const char *s1, const char *s2);
+int strncasecmp(const char *s1, const char *s2, size_t n);</code></pre>
+<h2 id="xmalloc">xmalloc</h2>
+<pre><code>void *xmalloc(size_t size) {
+  void *ptr = malloc(size);
+  if (ptr == NULL) {
+    fprintf(stderr, &quot;%s: Virtual memory exhausted\n&quot;, progname);
+    abort();
+  }
+  return ptr;
+}</code></pre>
+<h2 id="xrealloc">xrealloc</h2>
+<pre><code>void *xrealloc(void *ptr, size_t newsize) {
+  ptr = realloc(ptr, newsize);
+  if (ptr == NULL) {
+    fprintf(stderr, &quot;%s: Virtual memory exhausted\n&quot;, progname);
+    abort();
+  }
+  return ptr;
+}</code></pre>
+<h2 id="c-operator-precedence">C Operator Precedence</h2>
+<pre><code>Operator  - Description                 - Associativity
+  ()      - Parentesis                  - Left-To-Right
+  []      - Brackets
+  .       - Object member
+  -&gt;      - Object member
+  -- ++   - Postfix increment/decrement
+
+  -- ++   - Prefix increment/decrement  - Right-To-Left
+  - +     - Unary plus/minus
+  ! ~     - Logic negation/complement
+  (type)  - Cast
+  *       - Dereference
+  &amp;       - Address
+  sizeof  - Get typesize
+
+  * / %   - Multiply/Divide/Modulo      - Left-To-Right
+  + -     - Addition/Subtraction
+  &lt;&lt; &gt;&gt;   - Bitwise shift
+  &lt; &lt;=    - Relation less/less or equal
+  &gt; &gt;=    - Relation more/more or equal
+  == !=   - Relation (not) equal
+  &amp;       - Bitwise AND
+  ^       - Bitwise XOR
+  |       - Bitwise OR
+  &amp;&amp;      - Logical AND
+  ||      - Logical OR
+
+  ?:      - Ternary                     - Right-To-Left
+  =       - Assignment
+  += -=   - Add/Sub assignment
+  *= /=   - Mult/Div assignment
+  %= &amp;=   - Modulo / Bitwise AND assignment
+  ^= |=   - Bitwise (X)OR
+  &lt;&lt;= &gt;&gt;= - BITWISE SHL / SHR ASSIGNMENT</code></pre>

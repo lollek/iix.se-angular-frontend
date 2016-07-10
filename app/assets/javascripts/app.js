@@ -30,6 +30,7 @@
                 // Moria
                 .when('/moria', { templateUrl: '/html/moria.html' })
                 .when('/moria/:filepath', {
+                  // TODO: Fix recursion if filepath does not exist
                    templateUrl: function (urlattr) {
                        return '/html/moria/' + urlattr.filepath;
                    }

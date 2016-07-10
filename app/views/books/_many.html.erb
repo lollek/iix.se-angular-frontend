@@ -7,7 +7,7 @@
       <th>Other</th>
 
       <% if @modify %>
-      <th>Modify</th>
+      <th>Action</th>
       <% end %>
 
     </tr>
@@ -22,10 +22,14 @@
 
       <% if @modify %>
       <td>
-        <%= link_to 'E', edit_book_path(book) %>
-        <%= link_to 'D', book_path(book),
+        <%= link_to 'Edit', edit_book_path(book),
+            :class => 'btn btn-mini btn-primary'
+        %>
+        <%= link_to 'Delete', book_path(book),
             method: :delete,
-            data: { confirm: 'Are you sure?' } %>
+            data: {confirm: 'Are you sure?' },
+            :class => 'btn btn-mini btn-danger'
+        %>
       </td>
       <% end %>
 

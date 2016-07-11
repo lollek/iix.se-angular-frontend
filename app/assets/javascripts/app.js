@@ -24,13 +24,14 @@
                     controller: 'NotesController'
                 })
 
-                // Lists
+                // Beerlist
                 .when('/beer', {templateUrl: '/html/beer.html'})
+
+                // Wishlist
                 .when('/wishlist', {
                   controller: 'BooksController',
                   templateUrl: '/html/wishlist.html'
                 })
-                .when('/booklist', {templateUrl: '/books'})
 
                 // Moria
                 .when('/moria', { templateUrl: '/html/moria.html' })

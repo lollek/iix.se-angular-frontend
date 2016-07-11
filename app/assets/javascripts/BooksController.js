@@ -6,7 +6,9 @@
     .factory('Book',
         ['$resource',
         function ($resource) {
-          return $resource('/books/:id');
+          return $resource('/books/:id', { id: '@_id'}, {
+            update : { method: 'PUT' }
+          });
     }])
 
     .controller('BooksController',
@@ -24,7 +26,11 @@
           };
 
           $scope.save_book = function(index, id) {
-            Book.save($scope.books[index]);
+            if (id === undefined) {
+              Book.save($scope.books[index]);
+            } else {
+              Book.update({id: id}, $scope.books[index]);
+            }
           };
 
           $scope.delete_book = function(index, id) {

@@ -27,9 +27,9 @@
 
           $scope.save_book = function(index, id) {
             if (id === undefined) {
-              Book.save($scope.books[index]);
+              $scope.books[index] = Book.save($scope.books[index]);
             } else {
-              Book.update({id: id}, $scope.books[index]);
+              $scope.books[index] = Book.update({id: id}, $scope.books[index]);
             }
           };
 

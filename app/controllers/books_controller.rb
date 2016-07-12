@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  #TODO: render json returns too much data (like creation dates)
+
   def index
     @books = Book.all
     render json: @books

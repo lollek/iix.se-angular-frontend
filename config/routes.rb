@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :books
 
+  post 'api/login' => 'users#login'
+  post 'api/logout' => 'users#logout'
+
   root 'application#angular'
 
   get '*path' => 'application#angular'

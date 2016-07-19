@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :auth!, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @books = Book.all

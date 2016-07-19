@@ -5,3 +5,18 @@ body {
 .jumbotron {
     background-color: white;
 }
+
+#login-dp {
+    min-width: 250px;
+    padding: 14px 14px;
+    overflow: hidden;
+}
+
+#login-err-msg {
+    text-align: center;
+    color: darkred;
+}
+
+#login-username {
+  text-align: center;
+}

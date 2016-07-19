@@ -29,7 +29,7 @@
                   <li>
                     <div class="row">
                       <div class="col-md-12">
-                        <form class="form" role="form" method="post" ng-hide="logged_in">
+                        <form class="form" role="form" method="post" ng-hide="$root.logged_in">
                           <div class="form-group">
                             <label class="sr-only" for="user-input">Username</label>
                             <input type="username" class="form-control"
@@ -47,7 +47,7 @@
                           </div>
                           <p id="login-err-msg" ng-bind="error_message"></p>
                         </form>
-                        <div ng-show="logged_in">
+                        <div ng-show="$root.logged_in">
                           <p id="login-username"> Logged in as <strong><span ng-bind="user.username"></span></strong></p>
                           <button ng-click="logout()" type="button" class="btn btn-danger btn-block">Logout</button>
                         </div>

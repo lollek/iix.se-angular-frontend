@@ -12,8 +12,8 @@
     }])
 
     .controller('BooksController',
-        ['Book', '$scope', '$routeParams', '$http',
-        function(Book, $scope, $routeParams, $http) {
+        ['Book', '$rootScope', '$scope', '$routeParams', '$http',
+        function(Book, $rootScope, $scope, $routeParams, $http) {
 
           $scope.edit = false;
 

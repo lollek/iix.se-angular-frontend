@@ -1,8 +1,8 @@
 <h1>
   Books
-  <button ng-hide="edit" ng-click="edit = true" type="button" class="btn btn-primary">Edit</button>
-  <button ng-hide="edit" ng-click="refresh()" type="button" class="btn btn-primary">Refresh</button>
-  <button ng-show="edit" ng-click="edit = false" type="button" class="btn btn-primary">Stop editing</button>
+  <button ng-show="$root.logged_in && !edit" ng-click="edit = true" type="button" class="btn btn-primary">Edit</button>
+  <button ng-show="$root.logged_in && !edit" ng-click="refresh()" type="button" class="btn btn-primary">Refresh</button>
+  <button ng-show="$root.logged_in && edit" ng-click="edit = false" type="button" class="btn btn-primary">Stop editing</button>
 </h1>
 
 <table class="table table-hover">
@@ -28,9 +28,9 @@
       <td><input type="text" ng-model="book.author"></td>
       <td><input type="text" ng-model="book.other">
         <span class="pull-right">
-          <button ng-show="edit" ng-click="save_book($index, book.id)" type="button"
+          <button ng-show="$root.logged_in && edit" ng-click="save_book($index, book.id)" type="button"
                   class="btn btn-success">Save</button>
-          <button ng-show="edit" ng-click="reset_book($index, book.id)" type="button"
+          <button ng-show="$root.logged_in && edit" ng-click="reset_book($index, book.id)" type="button"
                   class="btn btn-warning">Discard</button>
           <button ng-click="delete_book($index, book.id)" type="button"
                   class="btn btn-danger">Delete</button>
@@ -40,4 +40,4 @@
   </tbody>
 </table>
 
-<button ng-show="edit" ng-click="add_row()" type="button" class="btn btn-primary">Add row</button>
+<button ng-show="$root.logged_in && edit" ng-click="add_row()" type="button" class="btn btn-primary">Add row</button>

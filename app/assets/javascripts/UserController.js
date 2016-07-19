@@ -4,10 +4,11 @@
     angular.module('mainApp')
 
     .controller('UserController',
-        ['$scope', '$http', function($scope, $http) {
+        ['$rootScope', '$scope', '$http',
+        function($rootScope, $scope, $http) {
 
           $scope.error_message = null;
-          $scope.logged_in = false;
+          $rootScope.logged_in = false;
           $scope.user = {
             username: '',
             password: ''
@@ -21,7 +22,7 @@
           $scope.loginOK = function(res) {
             $scope.user.username = res.data;
             $scope.error_message = null;
-            $scope.logged_in = true;
+            $rootScope.logged_in = true;
             $scope.user.password = '';
           };
 
@@ -32,7 +33,7 @@
 
           $scope.logout = function() {
             $http.delete('/api/login');
-            $scope.logged_in = false;
+            $rootScope.logged_in = false;
           };
 
           $scope.checkLoggedIn = function() {

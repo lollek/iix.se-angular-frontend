@@ -28,7 +28,7 @@
 
           $scope.login = function() {
             $http.post('/api/login', $scope.user)
-            .then($scope.loginOK, $scope.loginErr);
+            .then($scope.loginOK, $scope.loginERR);
           };
 
           $scope.logout = function() {

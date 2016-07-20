@@ -15,6 +15,8 @@
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require marked
+//= require angular-marked
 //= require bootstrap/dist/js/bootstrap.min
 //= require turbolinks
 //= require ./app.js

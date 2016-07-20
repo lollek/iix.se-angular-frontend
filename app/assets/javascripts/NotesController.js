@@ -1,28 +1,29 @@
 (function() {
     'use strict';
 
-    angular.module('mainApp').controller('NotesController', ['$scope', '$routeParams',
-        function($scope, $routeParams) {
-            $scope.notes = note_posts;
-            
-            $scope.noteIndex = $routeParams.noteId;
-            if ($scope.noteIndex === undefined || $scope.noteIndex >= note_posts.length ||
-                $scope.noteIndex < 0) {
-                
-                $scope.noteIndex = 0;
-            }
+    angular.module('mainApp')
 
-            $scope.getRevIndex = function(index) {
-                return $scope.notes.length -index -1;
-            };
+    .factory('Note',
+        ['$resource',
+        function ($resource) {
+          return $resource('/api/notes/:id', { id: '@_id' }, {
+            update: { method: 'PUT' }
+          });
+    }])
 
-            $scope.getNoteTitle = function() {
-                return $scope.notes[$scope.getRevIndex($scope.noteIndex)].title;
-            };
 
-            $scope.getNotePath = function() {
-                return '/html/notes/' + $scope.notes[$scope.getRevIndex($scope.noteIndex)].href;
-            };
+    .controller('NotesController',
+        ['Note', '$scope', '$routeParams',
+        function(Note, $scope, $routeParams) {
+
+          // notes.html
+          if ($routeParams.noteId === undefined) {
+            $scope.notes = Note.query();
+
+          // note.html
+          } else {
+            $scope.note = Note.get({ id: $routeParams.noteId });
+          }
         }]);
 
     var note_posts = [

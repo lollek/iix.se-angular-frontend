@@ -3,7 +3,8 @@
 
     var app = angular.module('mainApp', [
         'ngRoute',
-        'ngResource'
+        'ngResource',
+        'hc.marked'
     ]);
 
     app.config(['$routeProvider', '$locationProvider', '$httpProvider',

@@ -17,8 +17,9 @@
 
           $scope.edit = false;
 
-          $scope.refresh = function() {
+          $scope.reset_all = function() {
             $scope.books = Book.query();
+            $scope.edit = false;
           };
 
           $scope.reset_book = function(index, id) {
@@ -44,6 +45,6 @@
             $scope.books.push(new Book());
           };
 
-          $scope.refresh();
+          $scope.reset_all();
     }]);
 })();

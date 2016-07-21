@@ -1,10 +1,15 @@
-<h1>Notes</h1>
+<h1>
+  Notes
+  <button ng-show="$root.logged_in" ng-click="add_note()" type="button" class="btn btn-primary">Add note</button>
+</h1>
 <div class="list-group">
 
-    <a class="list-group-item" ng-repeat="note in notes" href="{{'/notes/' + $index + 1}}">
+    <a class="list-group-item" ng-repeat="note in notes" href="{{'/notes/' + note.id}}">
         <span class="badge">{{note.date}}</span>
         &raquo;
         {{note.title}}
+        <button ng-show="$root.logged_in" ng-click="delete($index, note.id)"
+                type="button" class="btn btn-danger pull-right btn-xs">Delete</button>
     </a>
 
 </div>

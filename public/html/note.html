@@ -1,10 +1,15 @@
 <div class="page-header">
     <h1 ng-hide="editing" ng-bind="note.title"></h1>
-    <input ng-show="editing" type="text" class="form-control" ng-model="note.title" placeholder="Title">
-    <input ng-show="editing" typetime="yyyy-MM-dd" class="form-control" ng-model="note.date" placeholder="2016-00-00">
-    <button ng-show="$root.logged_in && !editing" ng-click="edit()" type="button" class="btn btn-primary">Edit</button>
-    <button ng-show="$root.logged_in && editing" ng-click="save()" type="button" class="btn btn-success">Save</button>
-    <button ng-show="$root.logged_in && editing" ng-click="discard()" type="button" class="btn btn-warning">Discard</button>
+    <input ng-show="editing" type="text" class="form-control" ng-model="note.title"
+           placeholder="Title">
+    <input ng-show="editing" typetime="yyyy-MM-dd" class="form-control"
+           ng-model="note.date">
+    <button ng-show="$root.logged_in && !editing" ng-click="edit()" type="button"
+            class="btn btn-primary">Edit</button>
+    <button ng-show="$root.logged_in && editing" ng-click="save()" type="button"
+            class="btn btn-success">Save</button>
+    <button ng-show="$root.logged_in && editing" ng-click="discard()" type="button"
+            class="btn btn-warning">Discard</button>
 </div>
 
 <div ng-hide="editing" marked="note.text">

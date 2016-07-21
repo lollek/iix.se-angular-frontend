@@ -18,10 +18,6 @@
 
           $scope.editing = false;
 
-          $scope.add_note = function() {
-            $scope.notes.push(new Note());
-          };
-
           $scope.edit = function() {
             $scope.editing = true;
           };
@@ -53,7 +49,16 @@
 
           // note.html
           } else {
-            $scope.note = Note.get({ id: $routeParams.noteId });
+            $scope.note = Note.get({ id: $routeParams.noteId },
+                function() {},  // OK
+                function() {    // ERR
+
+              // Set defaults
+              if ($scope.note.date === undefined) {
+                $scope.note.date = new Date(Date.now()).toISOString().slice(0,10);
+              }
+            });
+
           }
 
     }]);

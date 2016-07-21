@@ -6,7 +6,7 @@
     .factory('Book',
         ['$resource',
         function ($resource) {
-          return $resource('/books/:id', { id: '@_id'}, {
+          return $resource('/api/books/:id', { id: '@_id'}, {
             update : { method: 'PUT' }
           });
     }])

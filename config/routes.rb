@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  resources :books
 
   scope 'api' do
     resources :notes
+    resources :books
 
     get    'login' => 'users#status'
     post   'login' => 'users#login'
     delete 'login' => 'users#logout'
   end
-
 
   root 'application#angular'
 

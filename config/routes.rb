@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   scope 'api' do
     resources :notes
+
+    get    'login' => 'users#status'
+    post   'login' => 'users#login'
+    delete 'login' => 'users#logout'
   end
 
-  get    'api/login' => 'users#status'
-  post   'api/login' => 'users#login'
-  delete 'api/login' => 'users#logout'
 
   root 'application#angular'
 

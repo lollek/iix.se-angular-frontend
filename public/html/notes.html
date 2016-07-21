@@ -5,7 +5,7 @@
 </h1>
 <div class="list-group">
 
-    <a class="list-group-item" ng-repeat="note in notes" href="{{'/notes/' + note.id}}">
+    <a class="list-group-item" ng-repeat="note in notes | reverse" href="{{'/notes/' + note.id}}">
         <span class="badge">{{note.date}}</span>
         &raquo;
         {{note.title}}

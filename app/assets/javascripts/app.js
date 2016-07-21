@@ -7,6 +7,12 @@
         'hc.marked'
     ]);
 
+    app.filter('reverse', function() {
+      return function(list) {
+        return list.slice().reverse();
+      };
+    });
+
     app.config(['$routeProvider', '$locationProvider', '$httpProvider',
         function($routeProvider, $locationProvider, $httpProvider) {
             $locationProvider.html5Mode(true);

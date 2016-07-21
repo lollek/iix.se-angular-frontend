@@ -53,7 +53,8 @@
                 function() {},  // OK
                 function() {    // ERR
 
-              // Set defaults
+              // Set defaults, this should only happen on creating a new note
+              $scope.editing = true;
               if ($scope.note.date === undefined) {
                 $scope.note.date = new Date(Date.now()).toISOString().slice(0,10);
               }

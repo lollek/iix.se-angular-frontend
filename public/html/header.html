@@ -20,7 +20,8 @@
                 <li><a href="/moria">Moria</a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right" ng-controller="UserController">
+            <ul class="nav navbar-nav navbar-right"
+                ng-controller="UserController as user">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <b>Login</b><span class="caret"></span>
@@ -29,27 +30,32 @@
                   <li>
                     <div class="row">
                       <div class="col-md-12">
-                        <form class="form" role="form" method="post" ng-hide="$root.logged_in">
+                        <form class="form" role="form" method="post"
+                              ng-hide="$root.logged_in">
                           <div class="form-group">
                             <label class="sr-only" for="user-input">Username</label>
                             <input type="username" class="form-control"
                                    id="user-input" placeholder="User"
-                                   ng-model="user.username" required>
+                                   ng-model="user.user.username" required>
                           </div>
                           <div class="form-group">
                             <label class="sr-only" for="passwd-input">Username</label>
                             <input type="password" class="form-control"
                                    id="passwd-input" placeholder="Password"
-                                   ng-model="user.password" required>
+                                   ng-model="user.user.password" required>
                           </div>
                           <div class="form-group">
-                            <button ng-click="login()" type="submit" class="btn btn-primary btn-block" label="Login">Login</button>
+                            <button ng-click="user.login()" type="submit"
+                                    class="btn btn-primary btn-block"
+                                    label="Login">Login</button>
                           </div>
-                          <p id="login-err-msg" ng-bind="error_message"></p>
+                          <p id="login-err-msg" ng-bind="user.error_message"></p>
                         </form>
                         <div ng-show="$root.logged_in">
-                          <p id="login-username"> Logged in as <strong><span ng-bind="user.username"></span></strong></p>
-                          <button ng-click="logout()" type="button" class="btn btn-danger btn-block">Logout</button>
+                          <p id="login-username"> Logged in as 
+                          <strong><span ng-bind="user.user.username"></span></strong></p>
+                          <button ng-click="user.logout()" type="button"
+                                  class="btn btn-danger btn-block">Logout</button>
                         </div>
                       </div>
                     </div>

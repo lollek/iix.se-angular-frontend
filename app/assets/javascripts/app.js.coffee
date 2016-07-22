@@ -16,12 +16,6 @@ Config = ($routeProvider, $locationProvider, $httpProvider) ->
           .when('/', {templateUrl: '/html/main.html'})
           .when('/404', {templateUrl: '/html/404.html'})
 
-          # User / login
-          .when('/user', {
-              templateUrl: '/html/user.html',
-              controller: 'UserController'
-          })
-
           # Notes
           .when('/notes', {
                 templateUrl: '/html/notes.html',

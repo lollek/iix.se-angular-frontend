@@ -45,6 +45,7 @@
                 // Wishlist
                 .when('/wishlist', {
                   controller: 'BooksController',
+                  controllerAs: 'books',
                   templateUrl: '/html/wishlist.html'
                 })
 

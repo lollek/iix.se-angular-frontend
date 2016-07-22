@@ -1,7 +1,9 @@
 <h1>
   Books
-  <button ng-show="$root.logged_in && !edit" ng-click="edit = true" type="button" class="btn btn-primary">Edit</button>
-  <button ng-show="$root.logged_in && edit" ng-click="reset_all()" type="button" class="btn btn-primary">Stop editing</button>
+  <button ng-show="$root.logged_in && !books.edit" ng-click="books.edit = true"
+          type="button" class="btn btn-primary">Edit</button>
+  <button ng-show="$root.logged_in && books.edit" ng-click="books.reset_all()"
+          type="button" class="btn btn-primary">Stop editing</button>
 </h1>
 
 <table class="table table-hover">
@@ -13,25 +15,25 @@
     </tr>
   </thead>
 
-  <tbody ng-hide="edit">
-    <tr ng-repeat="book in books">
+  <tbody ng-hide="books.edit">
+    <tr ng-repeat="book in books.books">
       <td>{{book.title}}</td>
       <td>{{book.author}}</td>
       <td>{{book.other}}</td>
     </tr>
   </tbody>
 
-  <tbody ng-show="edit">
-    <tr ng-repeat="book in books">
+  <tbody ng-show="books.edit">
+    <tr ng-repeat="book in books.books">
       <td><input type="text" ng-model="book.title"></td>
       <td><input type="text" ng-model="book.author"></td>
       <td><input type="text" ng-model="book.other">
-        <span class="pull-right">
-          <button ng-show="$root.logged_in && edit" ng-click="save_book($index, book.id)" type="button"
+        <span class="pull-right" ng-show="$root.logged_in && books.edit">
+          <button ng-click="books.save_book($index, book.id)" type="button"
                   class="btn btn-success">Save</button>
-          <button ng-show="$root.logged_in && edit" ng-click="reset_book($index, book.id)" type="button"
+          <button ng-click="books.reset_book($index, book.id)" type="button"
                   class="btn btn-warning">Discard</button>
-          <button ng-click="delete_book($index, book.id)" type="button"
+          <button ng-click="books.delete_book($index, book.id)" type="button"
                   class="btn btn-danger">Delete</button>
         </span>
       </td>
@@ -39,4 +41,5 @@
   </tbody>
 </table>
 
-<button ng-show="$root.logged_in && edit" ng-click="add_row()" type="button" class="btn btn-primary">Add row</button>
+<button ng-show="$root.logged_in && books.edit" ng-click="books.add_row()"
+        type="button" class="btn btn-primary">Add row</button>

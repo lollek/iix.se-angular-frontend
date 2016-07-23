@@ -19,11 +19,13 @@ Config = ($routeProvider, $locationProvider, $httpProvider) ->
           # Notes
           .when('/notes', {
                 templateUrl: '/html/notes.html',
-                controller: 'NotesController'
+                controller: 'NotesController',
+                controllerAs: 'notes'
           })
           .when('/notes/:noteId', {
                 templateUrl: '/html/note.html',
-                controller: 'NotesController'
+                controller: 'NotesController',
+                controllerAs: 'notes'
           })
 
           # Beerlist

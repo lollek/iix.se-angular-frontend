@@ -1,24 +1,24 @@
 <div class="page-header">
-    <h1 ng-hide="editing" ng-bind="note.title"></h1>
+    <h1 ng-hide="notes.editing" ng-bind="notes.note.title"></h1>
     <div ng-show="$root.logged_in">
-      <input ng-show="editing" type="text" class="form-control"
-             ng-model="note.title" placeholder="Title">
-      <input ng-show="editing" typetime="yyyy-MM-dd" class="form-control"
-             ng-model="note.date">
-      <button ng-show="!editing" ng-click="edit()" type="button"
+      <input ng-show="notes.editing" type="text" class="form-control"
+             ng-model="notes.note.title" placeholder="Title">
+      <input ng-show="notes.editing" typetime="yyyy-MM-dd" class="form-control"
+             ng-model="notes.note.date">
+      <button ng-show="!notes.editing" ng-click="notes.edit()" type="button"
               class="btn btn-primary">Edit</button>
-      <button ng-show="editing" ng-click="save()" type="button"
+      <button ng-show="notes.editing" ng-click="notes.save()" type="button"
               class="btn btn-success">Save</button>
-      <button ng-show="editing" ng-click="discard()" type="button"
+      <button ng-show="notes.editing" ng-click="notes.discard()" type="button"
               class="btn btn-warning">Discard</button>
     </div>
 </div>
 
-<div ng-hide="editing" marked="note.text">
+<div ng-hide="notes.editing" marked="notes.note.text">
 </div>
 
-<div ng-show="$root.logged_in && editing" class="form-group row">
+<div ng-show="$root.logged_in && notes.editing" class="form-group row">
   <div class="col-md-12">
-    <textarea class="form-control" ng-model="note.text" rows="20"></textarea>
+    <textarea class="form-control" ng-model="notes.note.text" rows="20"></textarea>
   </div>
 </div>

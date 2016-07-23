@@ -5,11 +5,12 @@
 </h1>
 <div class="list-group">
 
-    <a class="list-group-item" ng-repeat="note in notes | reverse" href="{{'/notes/' + note.id}}">
+    <a class="list-group-item" ng-repeat="note in notes.notes | reverse"
+       href="{{'/notes/' + note.id}}">
         <span class="badge">{{note.date}}</span>
         &raquo;
         {{note.title}}
-        <button ng-show="$root.logged_in" ng-click="delete($index, note.id)"
+        <button ng-show="$root.logged_in" ng-click="notes.remove($index, note.id)"
                 type="button" class="btn btn-danger pull-right btn-xs">Delete</button>
     </a>
 

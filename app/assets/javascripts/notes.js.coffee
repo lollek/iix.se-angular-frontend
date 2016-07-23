@@ -10,7 +10,7 @@ Note = ($resource) ->
 
 Note.$inject = ['$resource']
 
-NotesController = ($routeParams, Note) ->
+NotesController = ($routeParams, $location, Note) ->
     init = () =>
         @edit = edit
         @save = save
@@ -23,7 +23,7 @@ NotesController = ($routeParams, Note) ->
             @note = new Note()
             @note.date = new Date(Date.now()).toISOString().slice(0,10)
             @editing = true
-        else if $routeParams.noteId
+        else if $routeParams.noteId != undefined
             @note = Note.get({id: $routeParams.noteId})
         else
             @notes = Note.query()
@@ -35,8 +35,8 @@ NotesController = ($routeParams, Note) ->
 
     save = () =>
         @editing = false
-        if @note.id
-            @note = Note.save(@note)
+        if @note.id is undefined
+            @note = Note.save(@note, (res) -> $location.path('/notes/' + res.id))
         else
             @note = Note.update({id: $routeParams.noteId}, @note)
         return
@@ -56,7 +56,7 @@ NotesController = ($routeParams, Note) ->
     return
 
 NotesController
-    .$inject = ['$routeParams', 'Note']
+    .$inject = ['$routeParams', '$location', 'Note']
 
 angular.module('mainApp')
     .factory('Note', Note)

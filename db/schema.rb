@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720175152) do
+ActiveRecord::Schema.define(version: 20160724120027) do
+
+  create_table "beers", force: true do |t|
+    t.string   "name"
+    t.string   "brewery"
+    t.float    "percentage"
+    t.string   "country"
+    t.string   "type"
+    t.float    "sscore"
+    t.float    "oscore"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "books", force: true do |t|
     t.string   "title"

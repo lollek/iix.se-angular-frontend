@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  before_action :auth!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :auth!, only: [:create, :update, :destroy]
 
   def index
     render json: Beer.all
@@ -9,18 +9,8 @@ class BeersController < ApplicationController
     render json: Beer.find(params[:id])
   end
 
-  def new
-    render json: Beer.new
-  end
-
-  def edit
-    render json: Beer.find(params[:id])
-  end
-
   def create
-    beer = Beer.new(beer_params)
-    beer.save
-    render json: beer
+    render json: Beer.create(beer_params)
   end
 
   def update

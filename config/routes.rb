@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   scope 'api' do
     resources :notes, only: [:index, :show, :create, :update, :destroy]
-    resources :books
+    resources :books, only: [:index, :show, :create, :update, :destroy]
     resources :beers
 
     get    'login' => 'users#status'

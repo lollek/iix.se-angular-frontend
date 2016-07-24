@@ -1,43 +1,28 @@
 class BooksController < ApplicationController
-  before_action :auth!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :auth!, only: [:create, :update, :destroy]
 
   def index
-    @books = Book.all
-    render json: @books
+    render json: Book.all
   end
 
   def show
-    @book = Book.find(params[:id])
-    render json: @book
-  end
-
-  def new
-    @book = Book.new
-    render json: @book
-  end
-
-  def edit
-    @book = Book.find(params[:id])
-    render json: @book
+    render json: Book.find(params[:id])
   end
 
   def create
-    #@book = Book.create(book_params)
-    @book = Book.new(book_params)
-    @book.save
-    render json: @book
+    render json: Book.create(book_params)
   end
 
   def update
-    @book = Book.find(params[:id])
-    @book.update(book_params)
-    render json: @book
+    book = Book.find(params[:id])
+    book.update(book_params)
+    render json: book
   end
 
   def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
-    render json: @book
+    book = Book.find(params[:id])
+    book.destroy
+    render json: book
   end
 
   private

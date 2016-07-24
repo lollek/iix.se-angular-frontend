@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   scope 'api' do
-    resources :notes
+    resources :notes, only: [:index, :show, :create, :update, :destroy]
     resources :books
     resources :beers
 

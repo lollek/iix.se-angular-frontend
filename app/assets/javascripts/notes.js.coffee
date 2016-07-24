@@ -19,7 +19,7 @@ NotesController = ($routeParams, $location, Note) ->
 
         @editing = false
 
-        if $routeParams.noteId == '0'
+        if $routeParams.noteId == 'new'
             @note = new Note()
             @note.date = new Date(Date.now()).toISOString().slice(0,10)
             @editing = true

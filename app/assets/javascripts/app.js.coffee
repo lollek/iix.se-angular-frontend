@@ -29,7 +29,11 @@ Config = ($routeProvider, $locationProvider, $httpProvider) ->
           })
 
           # Beerlist
-          .when('/beer', {templateUrl: '/html/beer.html'})
+          .when('/beer', {
+            controller: 'BeersController',
+            controllerAs: 'beers',
+            templateUrl: '/html/beer.html'
+          })
 
           # Wishlist
           .when('/wishlist', {

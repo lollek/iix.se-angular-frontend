@@ -55,6 +55,8 @@ Config = ($routeProvider, $locationProvider, $httpProvider) ->
                    '/html/moria/' + urlattr.filepath
           })
 
+          .otherwise({redirectTo: '/404'})
+
 Config
     .$inject = ['$routeProvider', '$locationProvider', '$httpProvider']
 

@@ -11,7 +11,7 @@ Book = ($resource) ->
 Book
     .$inject = ['$resource']
 
-BooksController = ($rootScope, $routeParams, $http, Book) ->
+BooksController = (Book) ->
 
     init = () =>
         @reset_all = reset_all
@@ -53,7 +53,7 @@ BooksController = ($rootScope, $routeParams, $http, Book) ->
     return
 
 BooksController
-    .$inject = ['$rootScope', '$routeParams', '$http', 'Book']
+    .$inject = ['Book']
 
 angular
     .module('mainApp')

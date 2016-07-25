@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   def angular
-    render 'layouts/application'
+    respond_to do |format|
+      format.html { render 'layouts/application' }
+      format.any  { redirect_to '/404' }
+    end
   end
 
   # Prevent CSRF attacks by raising an exception.

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'application#angular'
 
   scope 'api' do
     resources :notes, only: [:index, :show, :create, :update, :destroy]
@@ -9,8 +10,6 @@ Rails.application.routes.draw do
     post   'login' => 'users#login'
     delete 'login' => 'users#logout'
   end
-
-  root 'application#angular'
 
   get '*path' => 'application#angular'
 end

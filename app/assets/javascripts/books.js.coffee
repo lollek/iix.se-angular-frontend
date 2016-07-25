@@ -14,19 +14,12 @@ Book
 BooksController = (Book) ->
 
     init = () =>
-        @reset_all = reset_all
         @reset_book = reset_book
         @save_book = save_book
         @delete_book = delete_book
         @add_row = add_row
 
-        @edit = false
         @books = Book.query()
-        return
-
-    reset_all = () =>
-        @books = Book.query()
-        @edit = false
         return
 
     reset_book = (index, id) =>

@@ -1,0 +1,31 @@
+<h1>
+  Books
+  <a href="/wishlist" type="button" class="btn btn-primary">Stop editing</a>
+</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr class="header">
+      <th>Title</th>
+      <th>Author</th>
+      <th>Other</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="book in books.books">
+      <td><input type="text" ng-model="book.title"></td>
+      <td><input type="text" ng-model="book.author"></td>
+      <td><input type="text" ng-model="book.other">
+        <button ng-click="books.save_book($index, book.id)" type="button"
+                class="btn btn-success">Save</button>
+        <button ng-click="books.reset_book($index, book.id)" type="button"
+                class="btn btn-warning">Discard</button>
+        <button ng-click="books.delete_book($index, book.id)" type="button"
+                class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button ng-click="books.add_row()" type="button" class="btn btn-primary">Add row</button>

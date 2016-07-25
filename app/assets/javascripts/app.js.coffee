@@ -39,7 +39,12 @@ Config = ($routeProvider, $locationProvider, $httpProvider) ->
           .when('/wishlist', {
               controller: 'BooksController',
               controllerAs: 'books',
-              templateUrl: '/html/wishlist.html'
+              templateUrl: '/html/books/view.html'
+          })
+          .when('/wishlist/edit', {
+              controller: 'BooksController',
+              controllerAs: 'books',
+              templateUrl: '/html/books/edit.html'
           })
 
           # Moria

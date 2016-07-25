@@ -1,0 +1,24 @@
+<h1>
+  Books
+  <a ng-show="$root.logged_in" href="/wishlist/edit"
+     type="button" class="btn btn-primary">Edit</a>
+</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr class="header">
+      <th>Title</th>
+      <th>Author</th>
+      <th>Other</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="book in books.books">
+      <td>{{book.title}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.other}}</td>
+    </tr>
+  </tbody>
+
+</table>

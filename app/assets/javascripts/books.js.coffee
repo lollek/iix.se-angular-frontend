@@ -34,8 +34,12 @@ BooksController = (Book) ->
         return
 
     delete_book = (index, id) =>
-        @books.splice(index, 1)
-        Book.delete({id: id}) if id
+        if id
+            Book.delete({id: id},
+              () -> @books.splice(index, 1),
+              @show_error)
+        else
+            @books.splice(index, 1)
         return
 
     add_row = () =>

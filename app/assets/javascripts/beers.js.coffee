@@ -35,7 +35,7 @@ BeersController = (Beer) ->
     delete_beer = (index, id) =>
         if id
             Beer.delete({id: id},
-              () -> @beers.splice(index, 1),
+              () => @beers.splice(index, 1),
               @show_error)
         else
             @beers.splice(index, 1)

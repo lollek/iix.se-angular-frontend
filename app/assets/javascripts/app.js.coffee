@@ -32,7 +32,12 @@ Config = ($routeProvider, $locationProvider, $httpProvider) ->
           .when('/beer', {
             controller: 'BeersController',
             controllerAs: 'beers',
-            templateUrl: '/html/beer.html'
+            templateUrl: '/html/beer/view.html'
+          })
+          .when('/beer/edit', {
+            controller: 'BeersController',
+            controllerAs: 'beers',
+            templateUrl: '/html/beer/edit.html'
           })
 
           # Wishlist

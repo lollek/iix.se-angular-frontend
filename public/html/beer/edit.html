@@ -1,0 +1,39 @@
+<h1>
+  Beer
+  <a href="/beer" type="button" class="btn btn-primary">Stop editing</a>
+</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr class="header">
+      <th>Name</th>
+      <th>Brewery</th>
+      <th>Percentage</th>
+      <th>Country</th>
+      <th>Type</th>
+      <th>S-Score</th>
+      <th>O-Score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="beer in beers.beers">
+      <td><input type="text" ng-model="beer.name"></td>
+      <td><input type="text" ng-model="beer.brewery"></td>
+      <td><input type="text" ng-model="beer.percentage"></td>
+      <td><input type="text" ng-model="beer.country"></td>
+      <td><input type="text" ng-model="beer.type"></td>
+      <td><input type="text" ng-model="beer.sscore"></td>
+      <td><input type="text" ng-model="beer.oscore">
+        <button ng-click="beers.save_beer($index, beer.id)" type="button"
+                class="btn btn-success">Save</button>
+        <button ng-click="beers.reset_beer($index, beer.id)" type="button"
+                class="btn btn-warning">Discard</button>
+        <button ng-click="beers.delete_beer($index, beer.id)" type="button"
+                class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<button ng-click="beers.add_row()" type="button" class="btn btn-primary">Add row</button>

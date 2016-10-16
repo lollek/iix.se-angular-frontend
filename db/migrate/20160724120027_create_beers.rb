@@ -5,7 +5,7 @@ class CreateBeers < ActiveRecord::Migration
       t.string :brewery
       t.float :percentage
       t.string :country
-      t.string :type
+      t.string :style
       t.float :sscore
       t.float :oscore
 

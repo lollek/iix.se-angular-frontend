@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801180327) do
-
-# Could not dump table "beers" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+ActiveRecord::Schema.define(version: 20160720175152) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -39,5 +36,4 @@ ActiveRecord::Schema.define(version: 20160801180327) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 end

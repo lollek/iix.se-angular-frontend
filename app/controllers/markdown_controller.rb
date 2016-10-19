@@ -7,8 +7,13 @@ class MarkdownController < ApplicationController
 
   def update
     markdown = MarkdownText.find_by(name: params[:id])
-    markdown.update(markdown_params)
-    render json: markdown
+    if markdown
+      markdown.update(markdown_params)
+      render json: markdown
+    else
+      render nothing: true, status: :not_found
+    end
+
   end
 
   private

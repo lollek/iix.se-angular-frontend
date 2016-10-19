@@ -60,6 +60,13 @@ Config = ($routeProvider, $locationProvider, $httpProvider) ->
                    '/html/moria/' + urlattr.filepath
           })
 
+          # Markdown
+          .when('/sofie', {
+            controller: 'MarkdownController',
+            controllerAs: 'markdown',
+            templateUrl: '/html/markdown.html'
+          })
+
           .otherwise({redirectTo: '/404'})
 
 Config

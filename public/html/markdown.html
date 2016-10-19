@@ -1,0 +1,17 @@
+<div ng-show="$root.logged_in" class="form-group row">
+  <div class="page-header">
+      <button ng-hide="markdown.editing" ng-click="markdown.edit()" type="button"
+              class="btn btn-primary">Edit</button>
+      <button ng-show="markdown.editing" ng-click="markdown.save()" type="button"
+              class="btn btn-success">Save</button>
+      <button ng-show="markdown.editing" ng-click="markdown.discard()" type="button"
+              class="btn btn-danger">Throw away changes</button>
+  </div>
+</div>
+
+<div ng-show="markdown.editing" class="col-md-12">
+  <textarea class="form-control" ng-model="markdown.content.data" rows="20"></textarea>
+</div>
+
+<div ng-hide="markdown.editing" marked="markdown.content.data">
+</div>

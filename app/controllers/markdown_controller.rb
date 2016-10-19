@@ -1,5 +1,5 @@
 class MarkdownController < ApplicationController
-  before_action :auth!, only: [:create, :update, :destroy]
+  before_action -> { authg!("#{params[:id]}+w") }, only: [:create, :update, :destroy]
 
   def show
     render json: MarkdownText.find_by(name: params[:id])

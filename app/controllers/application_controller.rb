@@ -18,8 +18,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def has_group(group)
+    @user != nil && @user.groups.find_by(name: group) != nil
+  end
+
   def auth!
     render nothing: true, status: :forbidden unless whoami
+  end
+
+  def authg!(group)
+    render nothing: true, status: :forbidden unless whoami and has_group(group)
   end
 
 end

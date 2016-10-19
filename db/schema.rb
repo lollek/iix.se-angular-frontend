@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019170128) do
+ActiveRecord::Schema.define(version: 20161019192124) do
 
 # Could not dump table "beers" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 20161019170128) do
     t.string   "title"
     t.string   "author"
     t.string   "other"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups_users", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

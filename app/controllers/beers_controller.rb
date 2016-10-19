@@ -1,5 +1,5 @@
 class BeersController < ApplicationController
-  before_action :auth!, only: [:create, :update, :destroy]
+  before_action -> { authg!('beer+w') }, only: [:create, :update, :destroy]
 
   def index
     render json: Beer.all

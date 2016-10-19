@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+MarkdownText.create(name: 'sofie', data: '')
+
+Group.create(name: 'note+w')
+Group.create(name: 'beer+w')
+Group.create(name: 'book+w')
+Group.create(name: 'sofie+w')

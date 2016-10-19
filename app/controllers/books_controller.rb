@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :auth!, only: [:create, :update, :destroy]
+  before_action -> { authg!('book+w') }, only: [:create, :update, :destroy]
 
   def index
     render json: Book.all

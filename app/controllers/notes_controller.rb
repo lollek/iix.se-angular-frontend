@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :auth!, only: [:create, :update, :destroy]
+  before_action -> { authg!('note+w') }, only: [:create, :update, :destroy]
 
   def index
     render json: Note.all.as_json(except: [:text])

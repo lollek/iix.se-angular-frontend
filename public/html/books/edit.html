@@ -3,12 +3,15 @@
   <a href="/wishlist" type="button" class="btn btn-primary">Stop editing</a>
 </h1>
 
-<table class="table table-hover">
+<table class="table table-hover table-responsive">
   <thead>
     <tr class="header">
       <th>Title</th>
       <th>Author</th>
       <th>Other</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -17,10 +20,15 @@
       <td><input type="text" ng-model="book.title"></td>
       <td><input type="text" ng-model="book.author"></td>
       <td><input type="text" ng-model="book.other">
+      <td>
         <button ng-click="books.save_book($index, book.id)" type="button"
                 class="btn btn-success">Save</button>
+      </td>
+      <td>
         <button ng-click="books.reset_book($index, book.id)" type="button"
                 class="btn btn-warning">Discard</button>
+      </td>
+      <td>
         <button ng-click="books.delete_book($index, book.id)" type="button"
                 class="btn btn-danger">Delete</button>
       </td>

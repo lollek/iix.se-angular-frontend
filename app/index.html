@@ -11,11 +11,13 @@
 </head>
 <body>
 
-<div ng-include='"/html/header.html"'></div>
+<div ng-include='"partials/header.html"'></div>
 
 <div class="container" role="main">
-    <div ng-view autoscroll="true"></div>
+    <ui-view></ui-view>
+    <!-- <div ng-view autoscroll="true"></div> -->
 </div>
 
+<script src="dist/bundle.js"></script>
 </body>
 </html>

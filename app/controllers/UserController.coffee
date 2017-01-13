@@ -1,7 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 UserController = ($rootScope, $http) ->
     init = () =>
         @loginError = loginError
@@ -47,6 +43,8 @@ UserController = ($rootScope, $http) ->
     checkLoggedIn = () =>
         $http.get('/api/login')
             .then(@loginSuccess)
+            .catch(() => {})
+
         return
 
     init()

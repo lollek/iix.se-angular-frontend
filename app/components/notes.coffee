@@ -1,16 +1,4 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
-Note = ($resource) ->
-    $resource(
-        '/api/notes/:id',
-        {id: '@_id'},
-        {update: {method: 'PUT'}})
-
-Note.$inject = ['$resource']
-
-NotesController = ($routeParams, $location, Note) ->
+NotesController = ['$routeParams', '$location', 'Note', ($routeParams, $location, Note) ->
     init = () =>
         @edit = edit
         @save = save
@@ -54,10 +42,13 @@ NotesController = ($routeParams, $location, Note) ->
 
     init()
     return
+]
 
-NotesController
-    .$inject = ['$routeParams', '$location', 'Note']
+
+notes = {
+  templateUrl: '/templates/notes.html',
+  controller: NotesController
+}
 
 angular.module('mainApp')
-    .factory('Note', Note)
-    .controller('NotesController', NotesController)
+  .component('notes', notes)

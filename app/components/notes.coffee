@@ -1,54 +1,23 @@
-NotesController = ['$routeParams', '$location', 'Note', ($routeParams, $location, Note) ->
-    init = () =>
-        @edit = edit
-        @save = save
-        @discard = discard
-        @remove = remove
-
-        @editing = false
-
-        if $routeParams.noteId == 'new'
-            @note = new Note()
-            @note.date = new Date(Date.now()).toISOString().slice(0,10)
-            @editing = true
-        else if $routeParams.noteId != undefined
-            @note = Note.get({id: $routeParams.noteId})
-        else
-            @notes = Note.query()
-        return
-
-    edit = () =>
-        @editing = true
-        return
-
-    save = () =>
-        @editing = false
-        if @note.id is undefined
-            @note = Note.save(@note, (res) -> $location.path('/notes/' + res.id))
-        else
-            @note = Note.update({id: $routeParams.noteId}, @note)
-        return
-
-    discard = (index, id) =>
-        @editing = false
-        @note = Note.get({id: $routeParams.noteId})
-        return
-
-    remove = (index, id) =>
-        @notes.splice(index, 1)
-        Note.delete({id: id}) if id
-        return
-
-
-    init()
-    return
-]
-
-
 notes = {
-  templateUrl: '/templates/notes.html',
-  controller: NotesController
+  controller: ['Note', (Note) ->
+      @notes = Note.query()
+      return
+  ],
+
+  template: '<h1>' +
+            'Notes' +
+            '<a ng-show="$root.logged_in" href="/notes/new" type="button"' +
+            '    class="btn btn-primary">Add note</a>' +
+            '</h1>' +
+            '' +
+            '<div class="list-group">' +
+            '    <a class="list-group-item" ng-repeat="note in $ctrl.notes | reverse" ui-sref="note({ noteId: note.id })">' +
+            '        <span class="badge">{{note.date}}</span>' +
+            '        &raquo;' +
+            '        {{note.title}}' +
+            '    </a>' +
+            '</div>'
 }
 
 angular.module('mainApp')
-  .component('notes', notes)
+   .component('notes', notes)

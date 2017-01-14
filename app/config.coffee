@@ -3,8 +3,8 @@ Config = ['$stateProvider', ($stateProvider) ->
   .state({ name: 'index', url: '/',     templateUrl: '/partials/main.html' })
   .state({ name: '404',   url: '/404',  templateUrl:  '/partials/404.html' })
 
-  .state({ name: 'notes',  url: '/notes', component: 'notes' })
-  .state({ name: 'note',  url: '/note', component: 'note' })
+  .state({ name: 'note',  url: '/note/:noteId', template: '<note></note>' })
+  .state({ name: 'notes',  url: '/notes', template: '<notes></notes>' })
 ]
 
 # # Notes

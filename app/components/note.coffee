@@ -1,52 +1,62 @@
-NoteController = ['$routeParams', '$location', 'Note', ($routeParams, $location, Note) ->
-    init = () =>
-        @edit = edit
-        @save = save
-        @discard = discard
-        @remove = remove
 
+note = {
+  controller: ['$stateParams', 'Note', ($stateParams, Note) ->
+    @noteId = $stateParams.noteId
+
+    if @noteId == 'new'
+        @note = new Note()
+        @note.date = new Date(Date.now()).toISOString().slice(0,10)
+        @editing = true
+    else
+        @note = Note.get({id: @noteId})
         @editing = false
 
-        if $routeParams.noteId == 'new'
-            @note = new Note()
-            @note.date = new Date(Date.now()).toISOString().slice(0,10)
-            @editing = true
-        else if $routeParams.noteId != undefined
-            @note = Note.get({id: $routeParams.noteId})
-        else
-            @notes = Note.query()
-        return
-
-    edit = () =>
+    @edit = () =>
         @editing = true
         return
 
-    save = () =>
+    @save = () =>
         @editing = false
         if @note.id is undefined
             @note = Note.save(@note, (res) -> $location.path('/notes/' + res.id))
         else
-            @note = Note.update({id: $routeParams.noteId}, @note)
+            @note = Note.update({id: @noteId}, @note)
         return
 
-    discard = (index, id) =>
+    @reload = () =>
         @editing = false
-        @note = Note.get({id: $routeParams.noteId})
+        @note = Note.get({id: @noteId})
         return
 
-    remove = (index, id) =>
-        @notes.splice(index, 1)
-        Note.delete({id: id}) if id
+    @remove = () =>
+        # @notes.splice(index, 1) where index = note with id = @noteId
+        Note.delete({id: @noteId}) if @noteId != 'new'
         return
-
-
-    init()
     return
-]
+],
 
-note = {
-  templateUrl: '/templates/note.html',
-  controller: NoteController
+  template: '<div class="page-header">' +
+            '  <!-- Viewing -->' +
+            '  <div ng-hide="$ctrl.editing">' +
+            '    <h1 ng-bind="$ctrl.note.title"></h1>' +
+            '    <button ng-show="$root.logged_in" ng-click="$ctrl.edit()" type="button" class="btn btn-primary">Edit</button>' +
+            '    <div ng-hide="$ctrl.editing" marked="$ctrl.note.text">' +
+            '    </div>' +
+            '  </div>' +
+            '' +
+            '  <!-- Editing -->' +
+            '  <div ng-show="$ctrl.editing">' +
+            '    <input type="text" class="form-control" ng-model="$ctrl.note.title" placeholder="Title">' +
+            '    <input typetime="yyyy-MM-dd" class="form-control" ng-model="$ctrl.note.date">' +
+            '    <button ng-click="$ctrl.save()" type="button" class="btn btn-success">Save</button>' +
+            '    <button ng-click="$ctrl.reload()" type="button" class="btn btn-warning">Reload</button>' +
+            '    <div class="form-group row">' +
+            '      <div class="col-md-12">' +
+            '        <textarea class="form-control" ng-model="$ctrl.note.text" rows="20"></textarea>' +
+            '      </div>' +
+            '    </div>' +
+            '  </div>' +
+            '</div>'
 }
 
 angular.module('mainApp')

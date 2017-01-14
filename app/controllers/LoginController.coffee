@@ -1,4 +1,4 @@
-UserController = ($rootScope, $http) ->
+LoginController = ['$rootScope', '$http', ($rootScope, $http) ->
     init = () =>
         @loginError = loginError
         @loginSuccess = loginSuccess
@@ -49,9 +49,7 @@ UserController = ($rootScope, $http) ->
 
     init()
     return
-
-UserController
-    .$inject = ['$rootScope', '$http']
+]
 
 angular.module('mainApp')
-    .controller('UserController', UserController)
+    .controller('LoginController', LoginController)

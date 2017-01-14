@@ -1,8 +1,8 @@
 Note = ['$resource', ($resource) ->
     $resource(
         '/api/notes/:id',
-        {id: '@_id'},
-        {update: {method: 'PUT'}}
+        { id: '@_id' },
+        { update: { method: 'PUT' } }
     )
 ]
 

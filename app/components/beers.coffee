@@ -26,7 +26,7 @@ beers = {
                 @beers.splice(index, 1)
             return
 
-        @add_row = () =>
+        @add = () =>
             @beers.push(new Beer())
             return
         return
@@ -76,7 +76,7 @@ beers = {
               '    </tr>' +
               '  </tbody>' +
               '</table>' +
-              '<button ng-show="$ctrl.editing" ng-click="$ctrl.add_row()" class="btn btn-primary">Add row</button>'
+              '<button ng-show="$ctrl.editing" ng-click="$ctrl.add()" class="btn btn-primary">Add row</button>'
 }
 
 angular.module('mainApp')

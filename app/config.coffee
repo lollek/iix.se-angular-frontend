@@ -8,6 +8,7 @@ Config = ['$stateProvider', ($stateProvider) ->
   .state({ name: 'note',  url: '/note/:noteId', template: '<note></note>' })
   .state({ name: 'notes',  url: '/notes', template: '<notes></notes>' })
 
+  .state({ name: 'wishlist', url: '/wishlist', template: '<wishlist></wishlist>' })
 ]
 # # Wishlist
 #   .when('/wishlist', {

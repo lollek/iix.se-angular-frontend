@@ -23,14 +23,15 @@ require('./resources/MarkdownText')
 require('./resources/Note')
 
 # Controllers
-require('./controllers/BooksController')
 require('./controllers/MarkdownController')
 require('./controllers/LoginController')
 
 # Components
 require('./components/beers')
+require('./components/books')
 require('./components/note')
 require('./components/notes')
+require('./components/wishlist')
 
 # Config
 require('./config')

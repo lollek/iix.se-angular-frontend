@@ -10,15 +10,12 @@ Config = ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterPro
 
     .state({ name: 'wishlist', url: '/wishlist', template: '<wishlist></wishlist>' })
 
+    # Moria is a bit hacky, clean this up later
+    .state({ name: 'moria', url: '/moria', templateUrl: '/partials/moria/index.html' })
+    .state({ name: 'moriapage', url: '/moria/:page', templateUrl: ($stateParams) => '/partials/moria/' + $stateParams.page + '.html' })
+
     $urlRouterProvider.otherwise('/404')
 ]
-# Moria
-#   .when('/moria', { templateUrl: '/html/moria.html' })
-#   .when('/moria/:filepath', {
-# TODO: Fix recursion if filepath does not exist
-#   templateUrl: (urlattr) ->
-#     '/html/moria/' + urlattr.filepath
-# })
 
   # Markdown
 #   .when('/sofie', {

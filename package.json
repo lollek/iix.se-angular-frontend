@@ -33,6 +33,7 @@
     "webpack": "^2.1.0-beta"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "dist": "webpack --optimize-minimize"
   }
 }

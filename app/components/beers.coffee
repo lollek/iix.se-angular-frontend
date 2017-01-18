@@ -1,27 +1,38 @@
 beers = {
-    controller: ['Beer', (Beer) ->
+    controller: ['ngDialog', 'Beer', (ngDialog, Beer) ->
         @beers = Beer.query()
         @editing = false
+
+        @handleOk = () =>
+            return
+
+        @handleError = () =>
+            ngDialog.open({
+                template: '/dialogs/errorDialog.html',
+                className: 'ngdialog-theme-default'
+            });
+            return
 
         @edit = (value) =>
             @editing = value
             return
 
-        @reset = (index, id) =>
-            @beers[index] = Beer.get({ id: id })
+        @reload = (index, id) =>
+            @beers[index] = Beer.get({ id: id }, @handleOk, @handleError)
             return
 
         @save = (index, id) =>
             if id
-                @beers[index] = Beer.update({ id: id }, @beers[index])
+                @beers[index] = Beer.update({ id: id }, @beers[index], @handleOk, @handleError)
             else
-                @beers[index] = Beer.save(@beers[index])
+                @beers[index] = Beer.save(@beers[index], @handleOk, @handleError)
             return
 
         @delete = (index, id) =>
             if id
-                Beer.delete({id: id}, () =>
-                    @beers.splice(index, 1))
+                Beer.delete({ id: id },
+                    () => @beers.splice(index, 1),
+                    @handleError)
             else
                 @beers.splice(index, 1)
             return
@@ -71,7 +82,7 @@ beers = {
               '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" ng-model="beer.sscore"></td>' +
               '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" ng-model="beer.oscore"></td>' +
               '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.save($index, beer.id)" type="button" class="btn btn-success">Save</button></td>' +
-              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.reset($index, beer.id)" type="button" class="btn btn-warning">Reset</button></td>' +
+              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.reload($index, beer.id)" type="button" class="btn btn-warning">Reload</button></td>' +
               '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.delete($index, beer.id)" type="button" class="btn btn-danger">Delete</button></td>' +
               '    </tr>' +
               '  </tbody>' +

@@ -1,28 +1,18 @@
 LoginController = ['$rootScope', '$http', ($rootScope, $http) ->
-    init = () =>
-        @loginError = loginError
-        @loginSuccess = loginSuccess
-        @login = login
-        @logout = logout
-        @checkLoggedIn = checkLoggedIn
+    $rootScope.logged_in = false
 
-        $rootScope.logged_in = false
+    @error_message = null
+    @user = {
+      username: '',
+      password: ''
+    }
 
-        @error_message = null
-        @user = {
-          username: '',
-          password: ''
-        }
-
-        @checkLoggedIn()
-        return
-
-    loginError = (res) =>
+    @loginError = (res) =>
         @error_message = res.statusText
         @user.password = ''
         return
 
-    loginSuccess = (res) =>
+    @loginSuccess = (res) =>
         $rootScope.logged_in = true
 
         @error_message = null
@@ -30,24 +20,24 @@ LoginController = ['$rootScope', '$http', ($rootScope, $http) ->
         @user.password = ''
         return
 
-    login = () =>
+    @login = () =>
         $http.post('/api/login', @user)
             .then(@loginSuccess, @loginError)
         return
 
-    logout = () =>
+    @logout = () =>
         $rootScope.logged_in = false
         $http.delete('/api/login')
         return
 
-    checkLoggedIn = () =>
+    @checkLoggedIn = () =>
         $http.get('/api/login')
             .then(@loginSuccess)
             .catch(() => {})
 
         return
 
-    init()
+    @checkLoggedIn()
     return
 ]
 

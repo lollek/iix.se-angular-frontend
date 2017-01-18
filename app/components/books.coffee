@@ -1,26 +1,38 @@
 books = {
-    controller: ['Book', (Book) ->
+    controller: ['ngDialog', 'Book', (ngDialog, Book) ->
         @editing = false
         @books = Book.query()
 
+        @handleOk = () =>
+            return
+
+        @handleError = () =>
+            ngDialog.open({
+                template: '/dialogs/errorDialog.html',
+                className: 'ngdialog-theme-default'
+            });
+            return
+
         @edit = (value) =>
             @editing = value
+            return
 
         @reload = (index, id) =>
-            @books[index] = Book.get({ id: id })
+            @books[index] = Book.get({ id: id }, @handleOk, @handleError)
             return
 
         @save = (index, id) =>
             if id
-                @books[index] = Book.update({ id: id }, @books[index])
+                @books[index] = Book.update({ id: id }, @books[index], @handleOk, @handleError)
             else
-                @books[index] = Book.save(@books[index])
+                @books[index] = Book.save(@books[index], @handleOk, @handleError)
             return
 
         @delete = (index, id) =>
             if id
                 Book.delete({ id: id },
-                  () => @books.splice(index, 1))
+                  () => @books.splice(index, 1),
+                  @handleError)
             else
                 @books.splice(index, 1)
             return
@@ -56,9 +68,9 @@ books = {
               '    <td ng-if="$ctrl.editing"><input type="text" ng-model="book.title"></td>' +
               '    <td ng-if="$ctrl.editing"><input type="text" ng-model="book.author"></td>' +
               '    <td ng-if="$ctrl.editing"><input type="text" ng-model="book.other">' +
-              '    <td ng-if="$ctrl.editing"><button ng-click="$ctrl.save_book($index, book.id)" type="button" class="btn btn-success">Save</button></td>' +
+              '    <td ng-if="$ctrl.editing"><button ng-click="$ctrl.save($index, book.id)" type="button" class="btn btn-success">Save</button></td>' +
               '    <td ng-if="$ctrl.editing"><button ng-click="$ctrl.reload($index, book.id)" type="button" class="btn btn-warning">Reload</button></td>' +
-              '    <td ng-if="$ctrl.editing"><button ng-click="$ctrl.delete_book($index, book.id)" type="button" class="btn btn-danger">Delete</button></td>' +
+              '    <td ng-if="$ctrl.editing"><button ng-click="$ctrl.delete($index, book.id)" type="button" class="btn btn-danger">Delete</button></td>' +
               '  </tr>' +
               '</tbody>' +
               '<button ng-if="$ctrl.editing" ng-click="$ctrl.add()" class="btn btn-primary">Add row</button>'

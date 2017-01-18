@@ -1,17 +1,17 @@
-## CSS
+## Third party
 require('jquery')
 require('bootstrap-loader')
-require('./css/bootstrap_custom.css')
-
-## Third party
 require('angular')
 require('angular-resource')
 require('angular-ui-router')
 require('marked')
 require('angular-marked')
+require('ng-dialog')
+require('../node_modules/ng-dialog/css/ngDialog.css')
+require('../node_modules/ng-dialog/css/ngDialog-theme-default.css')
 
 ## mainApp
-angular.module('mainApp', ['ui.router', 'ngResource', 'hc.marked'])
+angular.module('mainApp', ['ui.router', 'ngResource', 'hc.marked', 'ngDialog'])
 
 # Filters
 require('./filters/reverse')

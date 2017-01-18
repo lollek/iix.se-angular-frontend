@@ -1,14 +1,23 @@
-
 note = {
-  controller: ['$stateParams', 'Note', ($stateParams, Note) ->
+  controller: ['$stateParams', 'ngDialog', 'Note', ($stateParams, ngDialog, Note) ->
     @noteId = $stateParams.noteId
+
+    @handleOk = () =>
+      return
+
+    @handleError = () =>
+      ngDialog.open({
+        template: '/dialogs/errorDialog.html',
+        className: 'ngdialog-theme-default'
+      });
+      return
 
     if @noteId == 'new'
         @note = new Note()
         @note.date = new Date(Date.now()).toISOString().slice(0,10)
         @editing = true
     else
-        @note = Note.get({id: @noteId})
+        @note = Note.get({ id: @noteId }, @handleOk, @handleError)
         @editing = false
 
     @edit = () =>
@@ -18,19 +27,21 @@ note = {
     @save = () =>
         @editing = false
         if @note.id is undefined
-            @note = Note.save(@note, (res) -> $location.path('/notes/' + res.id))
+            @note = Note.save(@note,
+              (res) -> $location.path('/notes/' + res.id),
+              @handleError)
         else
-            @note = Note.update({id: @noteId}, @note)
+            @note = Note.update({ id: @noteId }, @note, @handleOk, @handleError)
         return
 
     @reload = () =>
         @editing = false
-        @note = Note.get({id: @noteId})
+        @note = Note.get({ id: @noteId }, @handleOk, @handleError)
         return
 
     @remove = () =>
         # @notes.splice(index, 1) where index = note with id = @noteId
-        Note.delete({id: @noteId}) if @noteId != 'new'
+        Note.delete({ id: @noteId }, @handleOk, @handleError) if @noteId != 'new'
         return
     return
 ],

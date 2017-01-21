@@ -2,6 +2,9 @@ beers = {
     controller: ['ngDialog', 'Beer', (ngDialog, Beer) ->
         @beers = Beer.query()
         @editing = false
+        @sortBy = 'name'
+        @sortReverse = false
+        @filter = ''
 
         @handleOk = () =>
             return
@@ -40,6 +43,10 @@ beers = {
         @add = () =>
             @beers.unshift(new Beer())
             return
+
+        @sort = (sort) =>
+            @sortBy = sort
+            @sortReverse = !@sortReverse
         return
     ],
 
@@ -48,16 +55,24 @@ beers = {
               '  <button ng-show="$ctrl.editing" ng-click="$ctrl.edit(false)" class="btn btn-primary">Stop editing</button>' +
               '</h1>' +
               '<button ng-show="$ctrl.editing" ng-click="$ctrl.add()" class="btn btn-primary">Add row</button>' +
+              '<form>' +
+              '  <div class="form-group">' +
+              '    <div class="input-group">' +
+              '      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>' +
+              '      <input type="text" class="form-control" placeholder="Search" ng-model="$ctrl.filter">' +
+              '      </div>' +
+              '    </div>' +
+              '</form>' +
               ' <table class="table table-hover table-responsive">' +
               '  <thead>' +
               '    <tr class="header">' +
-              '      <th>Name</th>' +
-              '      <th>Brewery</th>' +
-              '      <th>Percentage</th>' +
-              '      <th>Country</th>' +
-              '      <th>Type</th>' +
-              '      <th>S-Score</th>' +
-              '      <th>O-Score</th>' +
+              '      <th><a href target="_self" ng-click="$ctrl.sort(\'name\')">Name</a></th>' +
+              '      <th><a href target="_self" ng-click="$ctrl.sort(\'brewery\')">Brewery</a></th>' +
+              '      <th><a href target="_self" ng-click="$ctrl.sort(\'percentage\')">Percentage</a></th>' +
+              '      <th><a href target="_self" ng-click="$ctrl.sort(\'country\')">Country</a></th>' +
+              '      <th><a href target="_self" ng-click="$ctrl.sort(\'type\')">Type</a></th>' +
+              '      <th><a href target="_self" ng-click="$ctrl.sort(\'sscore\')">S-Score</a></th>' +
+              '      <th><a href target="_self" ng-click="$ctrl.sort(\'oscore\')">O-Score</a></th>' +
               '      <th ng-if="$ctrl.editing"></th>' +
               '      <th ng-if="$ctrl.editing"></th>' +
               '      <th ng-if="$ctrl.editing"></th>' +
@@ -65,7 +80,7 @@ beers = {
               '  </thead>' +
               '' +
               '  <tbody>' +
-              '    <tr ng-repeat="beer in $ctrl.beers">' +
+              '    <tr ng-repeat="beer in $ctrl.beers | orderBy:$ctrl.sortBy:$ctrl.sortReverse | filter:$ctrl.filter">' +
               '      <!-- Viewing -->' +
               '      <td ng-if="!$ctrl.editing">{{beer.name}}</td>' +
               '      <td ng-if="!$ctrl.editing">{{beer.brewery}}</td>' +

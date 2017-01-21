@@ -17,13 +17,5 @@ Config = ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterPro
     $urlRouterProvider.otherwise('/404')
 ]
 
-  # Markdown
-#   .when('/sofie', {
-#   controller: 'MarkdownController',
-#   controllerAs: 'markdown',
-#   templateUrl: '/html/markdown.html'
-# })
-
-
 angular.module('mainApp')
     .config(Config)

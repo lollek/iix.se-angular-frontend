@@ -6,7 +6,7 @@ notes = {
 
   template: '<h1>' +
             'Notes' +
-            '<a ng-show="$root.logged_in" href="/notes/new" type="button"' +
+            '<a ng-show="$root.logged_in" ui-sref="note({ noteId: \'new\' })" type="button"' +
             '    class="btn btn-primary">Add note</a>' +
             '</h1>' +
             '' +

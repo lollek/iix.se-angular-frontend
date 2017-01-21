@@ -1,16 +1,16 @@
 note = {
-  controller: ['$stateParams', 'ngDialog', 'Note', ($stateParams, ngDialog, Note) ->
+  controller: ['$state', '$stateParams', 'ngDialog', 'Note', ($state, $stateParams, ngDialog, Note) ->
     @noteId = $stateParams.noteId
 
     @handleOk = () =>
-      return
+        return
 
     @handleError = () =>
-      ngDialog.open({
-        template: '/dialogs/errorDialog.html',
-        className: 'ngdialog-theme-default'
-      });
-      return
+        ngDialog.open({
+            template: '/dialogs/errorDialog.html',
+            className: 'ngdialog-theme-default'
+        });
+        return
 
     if @noteId == 'new'
         @note = new Note()
@@ -28,7 +28,7 @@ note = {
         @editing = false
         if @note.id is undefined
             @note = Note.save(@note,
-              (res) -> $location.path('/notes/' + res.id),
+              (res) -> $state.go('note', { noteId: res.id }),
               @handleError)
         else
             @note = Note.update({ id: @noteId }, @note, @handleOk, @handleError)

@@ -38,15 +38,16 @@ beers = {
             return
 
         @add = () =>
-            @beers.push(new Beer())
+            @beers.unshift(new Beer())
             return
         return
     ],
 
     template: '<h1>Beer' +
-              '  <button ng-show="$ctrl.editing" ng-click="$ctrl.edit(true)" class="btn btn-primary">Stop editing</button>' +
-              '  <button ng-show="!$ctrl.editing && $root.logged_in" ng-click="$ctrl.edit(false)" class="btn btn-primary">Edit</button>' +
+              '  <button ng-show="!$ctrl.editing && $root.logged_in" ng-click="$ctrl.edit(true)" class="btn btn-primary">Edit</button>' +
+              '  <button ng-show="$ctrl.editing" ng-click="$ctrl.edit(false)" class="btn btn-primary">Stop editing</button>' +
               '</h1>' +
+              '<button ng-show="$ctrl.editing" ng-click="$ctrl.add()" class="btn btn-primary">Add row</button>' +
               ' <table class="table table-hover table-responsive">' +
               '  <thead>' +
               '    <tr class="header">' +
@@ -79,15 +80,14 @@ beers = {
               '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" ng-model="beer.percentage"></td>' +
               '      <td ng-if="$ctrl.editing"><input type="text" ng-model="beer.country"></td>' +
               '      <td ng-if="$ctrl.editing"><input type="text" ng-model="beer.style"></td>' +
-              '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" ng-model="beer.sscore"></td>' +
-              '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" ng-model="beer.oscore"></td>' +
+              '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" min="1" max="5" ng-model="beer.sscore"></td>' +
+              '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" min="1" max="5" ng-model="beer.oscore"></td>' +
               '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.save($index, beer.id)" type="button" class="btn btn-success">Save</button></td>' +
               '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.reload($index, beer.id)" type="button" class="btn btn-warning">Reload</button></td>' +
               '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.delete($index, beer.id)" type="button" class="btn btn-danger">Delete</button></td>' +
               '    </tr>' +
               '  </tbody>' +
-              '</table>' +
-              '<button ng-show="$ctrl.editing" ng-click="$ctrl.add()" class="btn btn-primary">Add row</button>'
+              '</table>'
 }
 
 angular.module('mainApp')

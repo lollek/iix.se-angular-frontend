@@ -16,13 +16,14 @@ LoginController = ['$rootScope', '$http', ($rootScope, $http) ->
         $rootScope.logged_in = true
 
         @error_message = null
-        @user.username = res.data
+        @user.username = res.data.username
         @user.password = ''
         return
 
     @login = () =>
         $http.post('/api/login', @user)
             .then(@loginSuccess, @loginError)
+            .catch(@loginError)
         return
 
     @logout = () =>

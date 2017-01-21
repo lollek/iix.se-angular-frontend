@@ -38,7 +38,7 @@ books = {
             return
 
         @add = () =>
-            @books.push(new Book())
+            @books.unshift(new Book())
             return
         return
     ],

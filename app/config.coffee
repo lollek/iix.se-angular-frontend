@@ -9,6 +9,8 @@ Config = ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterPro
     .state({ name: 'note',  url: '/note/:noteId', template: '<note></note>' })
     .state({ name: 'notes',  url: '/notes', template: '<notes></notes>' })
 
+    .state({ name: 'sofie', url: '/sofie', template: '<markdown></markdown>' })
+
     .state({ name: 'wishlist', url: '/wishlist', template: '<wishlist></wishlist>' })
 
     # Moria is a bit hacky, clean this up later

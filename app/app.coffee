@@ -23,7 +23,6 @@ require('./resources/MarkdownText')
 require('./resources/Note')
 
 # Controllers
-require('./controllers/MarkdownController')
 require('./controllers/LoginController')
 
 # Components
@@ -31,6 +30,7 @@ require('./components/beers')
 require('./components/books')
 require('./components/note')
 require('./components/notes')
+require('./components/markdown')
 require('./components/wishlist')
 
 # Config

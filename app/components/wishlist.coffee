@@ -1,5 +1,6 @@
 wishlist = {
-    template: '<books></books>'
+    template: '<books></books>' +
+              '<games></games>'
 }
 
 angular.module('mainApp')

@@ -20,6 +20,7 @@ require('./filters/percentage')
 # Resources
 require('./resources/Beer')
 require('./resources/Book')
+require('./resources/Game')
 require('./resources/MarkdownText')
 require('./resources/Note')
 
@@ -29,6 +30,7 @@ require('./controllers/LoginController')
 # Components
 require('./components/beers')
 require('./components/books')
+require('./components/games')
 require('./components/note')
 require('./components/notes')
 require('./components/markdown')

@@ -15,6 +15,7 @@ angular.module('mainApp', ['ui.router', 'ngResource', 'hc.marked', 'ngDialog'])
 
 # Filters
 require('./filters/reverse')
+require('./filters/percentage')
 
 # Resources
 require('./resources/Beer')

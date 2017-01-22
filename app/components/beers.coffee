@@ -86,7 +86,7 @@ beers = {
               '      <!-- Viewing -->' +
               '      <td ng-if="!$ctrl.editing">{{beer.name}}</td>' +
               '      <td ng-if="!$ctrl.editing">{{beer.brewery}}</td>' +
-              '      <td ng-if="!$ctrl.editing">{{beer.percentage}}</td>' +
+              '      <td ng-if="!$ctrl.editing">{{beer.percentage | percentage: 1}}</td>' +
               '      <td ng-if="!$ctrl.editing">{{beer.country}}</td>' +
               '      <td ng-if="!$ctrl.editing">{{beer.style}}</td>' +
               '      <td ng-if="!$ctrl.editing">{{beer.sscore}}</td>' +

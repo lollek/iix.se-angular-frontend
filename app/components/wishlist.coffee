@@ -1,5 +1,6 @@
 wishlist = {
     template: '<books></books>' +
+              '<br/>' +
               '<games></games>'
 }
 

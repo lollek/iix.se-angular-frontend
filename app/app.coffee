@@ -35,6 +35,10 @@ require('./components/note')
 require('./components/notes')
 require('./components/markdown')
 require('./components/wishlist')
+require('./components/thumbnails/bookThumbnail')
+require('./components/thumbnails/gameThumbnail')
+require('./components/views/booksEditView')
+require('./components/views/booksListView')
 
 # Config
 require('./config')

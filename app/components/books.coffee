@@ -47,7 +47,10 @@ books = {
               '  <button ng-if="$ctrl.editing" ng-click="$ctrl.edit(false)" class="btn btn-primary">Stop editing</button>' +
               '  <button ng-if="!$ctrl.editing && $root.logged_in" ng-click="$ctrl.edit(true)" class="btn btn-primary">Edit</button>' +
               '</h1>' +
-              '<table class="table table-hover table-responsive">' +
+              '<h3 ng-if="!$ctrl.books.$resolved">Loading ' +
+              '  <span class="glyphicon glyphicon-refresh spinning"></span>' +
+              '</h3>' +
+              '<table ng-show="$ctrl.books.$resolved" class="table table-hover table-responsive">' +
               '<thead>' +
               '  <tr class="header">' +
               '    <th>Title</th>' +

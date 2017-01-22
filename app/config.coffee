@@ -1,7 +1,7 @@
 Config = ['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) ->
     $stateProvider
-    .state({ name: 'index', url: '/',     templateUrl: '/partials/main.html' })
-    .state({ name: 'index2', url: '',     templateUrl: '/partials/main.html' })
+    .state({ name: 'index', url: '/',     template: '<categories></categories>' })
+    .state({ name: 'index2', url: '',     template: '<categories></categories>' })
     .state({ name: '404',   url: '/404',  templateUrl:  '/partials/404.html' })
 
     .state({ name: 'beers', url: '/beers', template: '<beers></beers>' })

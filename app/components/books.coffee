@@ -15,9 +15,7 @@ books = {
         '    <button ng-if="$ctrl.editing" ng-click="$ctrl.edit(false)" class="btn btn-primary">Stop editing</button>' +
         '    <button ng-if="!$ctrl.editing && $root.logged_in" ng-click="$ctrl.edit(true)" class="btn btn-primary">Edit</button>' +
         '  </h1>' +
-        '  <h3 ng-if="!$ctrl.books.$resolved">Loading ' +
-        '    <span class="glyphicon glyphicon-refresh spinning"></span>' +
-        '  </h3>' +
+        '  <loading-spinner ng-if="!$ctrl.books.$resolved"></loading-spinner>' +
         '  <books-list-view ng-if="!$ctrl.editing" books="$ctrl.books"></books-list-view>' +
         '  <books-edit-view ng-if="$ctrl.editing" books="$ctrl.books"></books-edit-view>' +
         '</div>'

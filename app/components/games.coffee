@@ -6,9 +6,7 @@ games = {
   template:
       '<div class="col-xs-12">' +
       '  <h1>Games</h1>' +
-      '  <h3 ng-if="!$ctrl.games.$resolved">Loading ' +
-      '    <span class="glyphicon glyphicon-refresh spinning"></span>' +
-      '  </h3>' +
+      '  <loading-spinner ng-if="!$ctrl.games.$resolved"></loading-spinner>' +
       '  <div ng-show="$ctrl.games.$resolved" class="row">' +
       '    <div ng-repeat="game in $ctrl.games" class="col-xs-12 col-sm-4 col-md-3 col-lg-2">' +
       '      <game-thumbnail game="game"></game-thumbnail>' +

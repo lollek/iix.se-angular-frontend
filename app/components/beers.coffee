@@ -59,7 +59,7 @@ beers = {
               '  <div class="form-group">' +
               '    <div class="input-group">' +
               '      <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>' +
-              '      <input type="text" class="form-control" placeholder="Search" ng-model="$ctrl.filter">' +
+              '      <input type="text" class="form-control" placeholder="Filter" ng-model="$ctrl.filter">' +
               '      </div>' +
               '    </div>' +
               '</form>' +

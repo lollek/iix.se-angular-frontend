@@ -41,7 +41,9 @@ beers = {
             return
 
         @add = () =>
-            @beers.unshift(new Beer())
+            Beer beer = new Beer()
+            beer.name = ''
+            @beers.unshift(beer)
             return
 
         @sort = (sort) =>

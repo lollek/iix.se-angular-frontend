@@ -20,24 +20,27 @@ beers = {
             @editing = value
             return
 
-        @reload = (index, id) =>
-            @beers[index] = Beer.get({ id: id }, @handleOk, @handleError)
+        @reload = (beer) =>
+            index = @beers.indexOf(beer)
+            @beers[index] = Beer.get({ id: beer.id }, @handleOk, @handleError)
+
             return
 
-        @save = (index, id) =>
-            if id
-                @beers[index] = Beer.update({ id: id }, @beers[index], @handleOk, @handleError)
+        @save = (beer) =>
+            index = @beers.indexOf(beer)
+            if beer.id
+                @beers[index] = Beer.update({ id: beer.id }, beer, @handleOk, @handleError)
             else
-                @beers[index] = Beer.save(@beers[index], @handleOk, @handleError)
+                @beers[index] = Beer.save(beer, @handleOk, @handleError)
             return
 
-        @delete = (index, id) =>
-            if id
-                Beer.delete({ id: id },
-                    () => @beers.splice(index, 1),
+        @delete = (beer) =>
+            if beer.id
+                Beer.delete({ id: beer.id },
+                    () => @beers = @beers.filter (it) -> beer isnt it,
                     @handleError)
             else
-                @beers.splice(index, 1)
+                @beers = @beers.filter (it) -> beer isnt it
             return
 
         @add = () =>
@@ -99,9 +102,9 @@ beers = {
               '      <td ng-if="$ctrl.editing"><input type="text" ng-model="beer.style"></td>' +
               '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" min="1" max="5" ng-model="beer.sscore"></td>' +
               '      <td ng-if="$ctrl.editing"><input class="form-control" type="number" min="1" max="5" ng-model="beer.oscore"></td>' +
-              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.save($index, beer.id)" type="button" class="btn btn-success">Save</button></td>' +
-              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.reload($index, beer.id)" type="button" class="btn btn-warning">Reload</button></td>' +
-              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.delete($index, beer.id)" type="button" class="btn btn-danger">Delete</button></td>' +
+              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.save(beer)" type="button" class="btn btn-success">Save</button></td>' +
+              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.reload(beer)" type="button" class="btn btn-warning">Reload</button></td>' +
+              '      <td ng-if="$ctrl.editing"><button ng-click="$ctrl.delete(beer)" type="button" class="btn btn-danger">Delete</button></td>' +
               '    </tr>' +
               '  </tbody>' +
               '</table>'
